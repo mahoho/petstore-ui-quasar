@@ -1,0 +1,58 @@
+.login-page {
+	background: $light-bg;
+
+	color: $dark;
+
+	a {
+		text-decoration: none;
+		color: $dark;
+	}
+
+	.login-form {
+		background: white;
+		min-width: 300px;
+		border-radius: 12px;
+		box-shadow: 0 4px 4px rgb(100 100 100 / 30%);
+
+		.title {
+			text-align: center;
+			font-weight: bold;
+			font-size: 1.1em;
+		}
+
+		.header {
+			//background: $primary;
+			padding: 40px 0;
+			border-radius: 12px 12px 0 0 ;
+
+
+			.lock {
+				position: relative;
+				$width: 120px;
+				width: $width;
+				border-radius: 200px 200px;
+				object-fit: none;
+
+				top: -$width / 2;
+				margin-bottom: -$width / 2;
+				background: white;
+			}
+
+			.logo {
+				width: 200px;
+				max-width: none;
+			}
+		}
+
+		.content {
+			padding: 0 30px 30px;
+		}
+
+		.login-buttons {
+			margin-top: 30px;
+		}
+
+	}
+
+
+}

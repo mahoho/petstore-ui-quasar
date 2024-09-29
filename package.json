@@ -1,7 +1,7 @@
 {
   "name": "petstore-nette-front",
   "version": "0.0.1",
-  "description": "Pet Store APp",
+  "description": "Pet Store App",
   "productName": "Pet Store App",
   "author": "Oleksii R <sorrowerkein+bitbucket@gmail.com>",
   "private": true,
@@ -13,10 +13,12 @@
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "quasar": "^1.0.0"
+    "quasar": "^1.0.0",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",
+    "@quasar/quasar-app-extension-dotenv": "^1.1.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",

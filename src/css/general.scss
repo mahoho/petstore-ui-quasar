@@ -1,0 +1,208 @@
+html, body {
+  min-height: 100%;
+  overflow-y: scroll;
+}
+
+*:focus {
+  outline: none;
+}
+
+// app global css in SCSS form
+body {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  color: $dark;
+  font-weight: 400;
+  background: $light-bg;
+  overflow-x: hidden;
+}
+
+.q-popup-edit {
+  overflow: visible;
+}
+
+.inline-label {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.text-grey {
+  color: $grey;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+}
+
+.grey-link {
+  color: $grey;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: 100%;
+  max-width: 120px;
+
+  @media (max-width: 320px) {
+    max-width: 80px;
+  }
+}
+
+.text-white {
+  color: white;
+}
+
+.bg-white {
+  background: white;
+  color: $dark;
+}
+
+.q-page {
+  padding: 20px;
+}
+
+.font-lg {
+  font-size: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.page-title {
+  text-transform: uppercase;
+  font-size: 18px;
+  color: $primary;
+  text-align: center;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.page-subtitle {
+  text-transform: uppercase;
+  font-size: 16px;
+  color: $primary;
+  text-align: center;
+  margin: 10px 0;
+}
+
+h1, h2, h3, h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+  line-height: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.page-content {
+  background: white;
+
+  .q-table th {
+    font-weight: 700;
+  }
+
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+
+  .q-table__control {
+    gap: 10px;
+    align-items: center;
+
+    .form-group {
+      margin-bottom: 0;
+    }
+  }
+
+  .page-content-header {
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-transform: uppercase;
+
+    &.with-button {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+
+      .page-title {
+        &:before {
+          content: "●";
+          color: $primary;
+          display: inline-block;
+          margin-right: 5px;
+          font-size: 1.4em;
+          position: relative;
+          top: 2px;
+        }
+      }
+
+      .buttons {
+        display: flex;
+
+        .title {
+          font-weight: bold;
+          font-size: 1.2em;
+        }
+
+        .button {
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .page-content-white {
+    flex: 1;
+    padding: 10px;
+
+    @media all and (max-width: 1024px) {
+      padding: 10px;
+    }
+
+    //box-shadow: 0 0 5px 5px rgba(100, 100, 100, 0.1);
+    //border-radius: 0 0 6px 0;
+  }
+}
+
+.mx-datepicker-popup {
+  z-index: 9001 !important;
+}
+
+.date-dropdowns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  select {
+    margin: 5px;
+    background: white;
+    padding: 5px;
+    border-radius: 4px;
+  }
+}
+
+
+.q-table__control {
+  .mx-datepicker {
+    width: 120px;
+  }
+}

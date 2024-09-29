@@ -1,107 +1,89 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
+  <q-layout view="hHh lpR lFr">
 
-        <q-toolbar-title>
-          Quasar App
+    <q-header elevated
+              class="bg-primary text-white"
+              v-if="$showHeader">
+      <q-toolbar>
+        <q-btn dense
+               flat
+               round
+               icon="ion-ios-menu"
+               @click="leftDrawerOpen = !leftDrawerOpen"/>
+
+        <q-toolbar-title class="toolbar-title text-center">
+          {{ $route.meta ? $route.meta.title :'' }}
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+<!--        <q-btn dense-->
+<!--               flat-->
+<!--               round-->
+<!--               icon="ion-ios-notifications"-->
+<!--               @click="rightDrawerOpen = !rightDrawerOpen"/>-->
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-1"
-    >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+    <q-drawer v-model="leftDrawerOpen"
+              v-if="$showHeader"
+              side="left"
+              show-if-above
+              :width="250"
+              :breakpoint="768"
+              elevated>
+      <sidebar></sidebar>
     </q-drawer>
 
+<!--    <q-drawer v-model="rightDrawerOpen"-->
+<!--              @show="markNotificationsAsRead"-->
+<!--              v-if="$showHeader"-->
+<!--              @close="rightDrawerOpen = false"-->
+<!--              side="right"-->
+<!--              behavior="mobile"-->
+<!--              elevated>-->
+<!--      <notifications></notifications>-->
+<!--    </q-drawer>-->
+
     <q-page-container>
-      <router-view />
+      <transition name="fade"
+                  mode="out-in">
+        <router-view></router-view>
+      </transition>
     </q-page-container>
+
   </q-layout>
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
+  import Sidebar from 'components/Sidebar';
+  // import Notifications from 'components/Notifications';
 
-const linksData = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
+  export default {
+    name: 'MainLayout',
 
-export default {
-  name: 'MainLayout',
-  components: { EssentialLink },
-  data () {
-    return {
-      leftDrawerOpen: false,
-      essentialLinks: linksData
+    components: {
+      // Notifications,
+      Sidebar,
+    },
+
+    data() {
+      return {
+        leftDrawerOpen: false,
+        rightDrawerOpen: false,
+        notifications: [],
+      };
+    },
+    mounted() {
+      this.$root.$on('closeNotifications', () => {
+        this.rightDrawerOpen = false
+      })
+    },
+    beforeDestroy() {
+      this.$root.$off('closeNotifications')
+    },
+    methods: {
+      markNotificationsAsRead() {
+        this.$axios.post(this.$apiUrl + '/notifications/read');
+      },
     }
-  }
-}
+  };
 </script>

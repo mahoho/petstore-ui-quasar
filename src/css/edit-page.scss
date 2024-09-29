@@ -1,0 +1,76 @@
+.edit-page {
+  width: 1024px;
+  max-width: 80vw;
+
+  @media all and (min-width: 1200px){
+    max-width: 75vw !important;
+  }
+
+  &.edit-task-page {
+    @media all and (min-width: 1200px){
+      max-width: 61vw !important;
+    }
+  }
+
+  .left-col {
+    margin-bottom: 20px;
+  }
+
+  .inputs .right-col {
+    justify-content: flex-start;
+
+    .photo {
+      img {
+        display: block;
+        width: 100px;
+        margin: 0 auto 20px;
+        border-radius: 0;
+      }
+    }
+
+  }
+
+  &.edit-time-entry {
+    .page-content-white {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+
+      .form-group {
+        &.w-full {
+          width: 100%;
+        }
+
+        .mx-datepicker {
+          margin-top: 5px;
+
+          .mx-datepicker-wrapper {
+            width: 10%;
+          }
+
+          &.date {
+            min-width: 70% !important;
+          }
+        }
+
+        .value {
+          display: flex;
+          gap: 10px;
+        }
+      }
+
+      .break {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        > .q-field,
+        .materials-select {
+          flex: 1;
+        }
+      }
+
+    }
+  }
+}
