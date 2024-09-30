@@ -42,7 +42,7 @@
   import {copy} from "boot/axios";
 
   export default {
-    name: 'EditCategory',
+    name: 'EditTag',
     props: ['id'],
     data() {
       return {

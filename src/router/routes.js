@@ -15,6 +15,7 @@ const routes = [
       { path: '/categories', meta: { title: 'Categories', hideHeader: false }, name: 'categories', component: () => import('pages/CategoriesPage.vue') },
       { path: '/tags', meta: { title: 'Tags', hideHeader: false }, name: 'tags', component: () => import('pages/TagsPage.vue') },
       { path: '/pets', meta: { title: 'Pets', hideHeader: false }, name: 'pets', component: () => import('pages/PetsPage.vue') },
+      { path: '/orders', meta: { title: 'Orders', hideHeader: false }, name: 'orders', component: () => import('pages/OrdersPage.vue') },
 
     ]
   },

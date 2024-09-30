@@ -5,6 +5,11 @@ export default function () {
       'available',
       'pending',
       'sold',
-    ]
+    ],
+    ordersStatuses: [
+      'placed',
+      'approved',
+      'delivered',
+    ],
   }
 }

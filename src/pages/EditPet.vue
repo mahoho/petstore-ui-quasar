@@ -102,7 +102,7 @@
 
 <script>
 export default {
-  name: 'EditCategory',
+  name: 'EditPet',
   props: ['id'],
   data() {
     return {
