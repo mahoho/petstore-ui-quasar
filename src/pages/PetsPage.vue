@@ -21,6 +21,36 @@
             :pagination.sync="pagination"
         >
 
+          <template v-slot:top-left>
+            <q-select v-model="filters.status"
+                      dense
+                      hide-bottom-space
+                      filled
+                      clearable
+                      multiple
+                      use-chips
+                      options-dense
+                      style="width: 300px"
+                      :options="statuses"
+                      @input="findByStatus"
+                      label="Find by Status"
+            />
+            <q-select v-model="filters.tags"
+                      dense
+                      hide-bottom-space
+                      filled
+                      options-dense
+                      style="width: 300px"
+                      clearable
+                      multiple
+                      :options="tags"
+                      use-chips
+                      option-label="name"
+                      @input="findByTags"
+                      label="Find by Tags"
+            />
+          </template>
+
           <template v-slot:top-right>
             <q-input dense
                      debounce="300"
@@ -58,7 +88,7 @@
           <template v-slot:body-cell-photoUrls="props">
             <q-td key="photoUrls"
                   :props="props">
-              <q-img :src="$apiUrl + props.row.photoUrls[0]" style="width: 150px" contain />
+              <q-img v-if="props.row.photoUrls" :src="$apiUrl + props.row.photoUrls[0]" style="width: 150px" contain />
             </q-td>
           </template>
 
@@ -112,9 +142,12 @@ export default {
       columns: [],
       visibleColumns: [],
       items: [],
+      tags: [],
       filters: {
-        search: ''
-      }
+        search: '',
+        status: [],
+        tags: []
+      },
     };
   },
   mounted() {
@@ -154,8 +187,38 @@ export default {
     ]
 
     this.getList();
+    this.getTags();
   },
   methods: {
+    findByStatus() {
+      if(!this.filters.status || !this.filters.status.length) {
+        this.getList()
+        return
+      }
+
+      let status = this.filters.status.join(',')
+
+      this.axiosGet(`/pet/findByStatus?status=${status}`, r => {
+        this.items = r.data
+      })
+    },
+    findByTags() {
+      if(!this.filters.tags || !this.filters.tags.length) {
+        this.getList()
+        return
+      }
+
+      let tags = this.filters.tags.map(i => i.name).join(',')
+
+      this.axiosGet(`/pet/findByTags?tags=${tags}`, r => {
+        this.items = r.data
+      })
+    },
+    getTags() {
+      this.axiosGet('/tag', r => {
+        this.tags = r.data;
+      }, false)
+    },
     openEditItem(item) {
       this.$q.dialog({
         component: EditPet,
@@ -197,6 +260,11 @@ export default {
           })
         })
       })
+    }
+  },
+  computed: {
+    statuses(){
+      return this.$store.state.mainStore.petsStatuses
     }
   }
 };

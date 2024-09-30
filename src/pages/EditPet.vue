@@ -23,6 +23,17 @@
             </div>
           </div>
           <div class="form-group">
+            <q-select v-model="item.status"
+                      dense
+                      hide-bottom-space
+                      filled
+                      :options="statuses"
+                      label="Status"
+                      :rules="[val => !!val || 'Field is required']"
+                      required
+            />
+          </div>
+          <div class="form-group">
             <q-select v-model="item.category"
                       dense
                       hide-bottom-space
@@ -198,8 +209,12 @@ export default {
       // we just need to hide dialog
       this.hide()
     }
-
   },
+  computed: {
+    statuses(){
+      return this.$store.state.mainStore.petsStatuses
+    }
+  }
 };
 </script>
 

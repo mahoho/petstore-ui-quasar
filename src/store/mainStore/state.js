@@ -1,5 +1,10 @@
 export default function () {
   return {
-    user: {}
+    user: {},
+    petsStatuses: [
+      'available',
+      'pending',
+      'sold',
+    ]
   }
 }
