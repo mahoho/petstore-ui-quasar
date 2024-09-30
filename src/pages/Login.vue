@@ -42,10 +42,12 @@
                  type="submit"
                  label="login"/>
 
-          <router-link to="/forgot_password"
-                       class="q-my-md block">
-            Forgot password?
-          </router-link>
+          <q-btn flat
+                 no-caps
+                 label="Create Users"
+                 to="/createUsers"
+                 class="q-my-md block"
+          />
 
         </div>
       </div>

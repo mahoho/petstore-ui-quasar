@@ -19,7 +19,13 @@ const routes = [
 
     ]
   },
-
+  {
+    path: '/createUsers',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {path: '/createUsers', meta: {hideHeader: true, hideFooter: true}, component: () => import('pages/BulkCreateUsers.vue') }
+    ]
+  },
   // Always leave this as last one,
   // but you can also remove it
   {
