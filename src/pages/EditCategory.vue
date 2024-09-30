@@ -9,11 +9,7 @@
         </div>
 
         <form class="page-content"
-              autocorrect="off"
-              autocapitalize="off"
-              autocomplete="off"
-              spellcheck="false"
-              @submit.prevent="save()">
+                @submit.prevent="save()">
           <div class="page-content-white">
             <div class="form-group">
               <q-input v-model="item.name"
@@ -71,7 +67,7 @@
           this.item = r.data
 
           this.$q.notify({
-            message: 'User saved!',
+            message: 'Category saved!',
             type: 'positive',
           });
 
@@ -93,9 +89,6 @@
       // following method is REQUIRED
       // (don't change its name --> "hide")
       hide () {
-        if(typeof this.dismiss == "function"){
-          this.dismiss()
-        }
         this.$refs.dialog.hide()
       },
 
