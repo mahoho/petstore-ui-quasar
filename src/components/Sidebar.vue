@@ -52,16 +52,22 @@ export default {
           route_name: 'users'
         },
         {
-          title: 'Pets',
-          icon: 'fas fa-dog',
-          route: '/pets',
-          route_name: 'pets'
-        },
-        {
           title: 'Tags',
           icon: 'fas fa-tag',
           route: '/tags',
           route_name: 'tags'
+        },
+        {
+          title: 'Categories',
+          icon: 'fas fa-file',
+          route: '/categories',
+          route_name: 'categories'
+        },
+        {
+          title: 'Pets',
+          icon: 'fas fa-dog',
+          route: '/pets',
+          route_name: 'pets'
         },
         {
           title: 'Orders',

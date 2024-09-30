@@ -3,9 +3,9 @@
     <div class="page-content list-page">
       <div class="page-content-header with-button">
 
-        <button @click="openEditUser({})"
+        <button @click="openEditItem({})"
                 class="button button-primary">
-          Add User
+          Add Category
           <q-icon name="ion-ios-add-circle-outline"/>
         </button>
       </div>
@@ -48,25 +48,11 @@
             />
           </template>
 
-          <template v-slot:body-cell-email="props">
-            <q-td key="email"
-                  :props="props">
-              <a :href="'mailto:'+props.row.email">
-                {{ props.row.email }}
-              </a>
-            </q-td>
-          </template>
-          <template v-slot:body-cell-userStatus="props">
-            <q-td key="userStatus"
-                  :props="props">
-              {{ props.row.userStatus ? "Enabled" : "Not Enabled" }}
-            </q-td>
-          </template>
           <template v-slot:body-cell-edit="props">
             <q-td key="edit"
                   :props="props">
               <q-btn flat
-                     @click="openEditUser(props.row)"
+                     @click="openEditItem(props.row)"
                      icon="far fa-file-alt"/>
             </q-td>
           </template>
@@ -86,10 +72,10 @@
 </template>
 
 <script>
-import EditUser from 'pages/EditUser';
+import EditCategory from "pages/EditCategory.vue";
 
 export default {
-  name: 'UsersPage',
+  name: 'CategoriesPage',
   data() {
     return {
       selectAll: false,
@@ -111,12 +97,7 @@ export default {
   mounted() {
     let cols = {
       id: 'ID #',
-      email: 'Email',
-      userStatus: 'Status',
-      username: 'Username',
-      firstName: 'First Name',
-      lastName: 'Last Name',
-      phone: 'Phone',
+      name: 'Name',
       edit: 'Edit',
       remove: 'Delete',
     };
@@ -136,12 +117,7 @@ export default {
 
     this.visibleColumns = [
       'id',
-      'email',
-      'userStatus',
-      'username',
-      'firstName',
-      'lastName',
-      'phone',
+      'name',
       'edit',
       'remove',
     ]
@@ -149,9 +125,9 @@ export default {
     this.getList();
   },
   methods: {
-    openEditUser(user) {
+    openEditItem(item) {
       this.$q.dialog({
-        component: EditUser,
+        component: EditCategory,
 
         // optional if you want to have access to
         // Router, Vuex store, and so on, in your
@@ -164,29 +140,28 @@ export default {
 
         // props forwarded to component
         // (everything except "component" and "parent" props above):
-        user: user,
-        user_id: user.id,
+        id: item.id,
       }).onDismiss(() => {
         this.getList()
       })
     },
     getList() {
-      this.axiosGet('/user', (r) => {
+      this.axiosGet('/category', (r) => {
         this.items = r.data;
       });
     },
     deleteItem(item) {
       this.$q.dialog({
         title: 'Confirm',
-        message: `Are sure want to delete ${item.username} user?`,
+        message: `Are sure want to delete ${item.name} category?`,
         cancel: true,
         persistent: true
       }).onOk(() => {
-        this.axiosDelete('/user/' + item.username, (r) => {
+        this.axiosDelete('/category/' + item.id, (r) => {
           this.getList();
 
           this.$q.notify({
-            message: `User ${item.username} deleted!`,
+            message: `Category ${item.name} deleted!`,
             type: 'positive',
           })
         })

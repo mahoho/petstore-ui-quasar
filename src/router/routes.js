@@ -12,6 +12,7 @@ const routes = [
 
       { path: '/dashboard', meta: { title: 'Dashboard', hideHeader: false }, name: 'dashboard', component: () => import('pages/Dashboard.vue') },
       { path: '/users', meta: { title: 'Users', hideHeader: false }, name: 'users', component: () => import('pages/UsersPage.vue') },
+      { path: '/categories', meta: { title: 'Categories', hideHeader: false }, name: 'categories', component: () => import('pages/CategoriesPage.vue') },
 
     ]
   },
